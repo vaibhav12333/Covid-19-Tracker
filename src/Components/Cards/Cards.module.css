@@ -1,0 +1,46 @@
+.footerConfirmed, .headerConfirmed {
+    border-bottom: 7px solid blue;
+    color: blue ;
+    text-transform: uppercase;  
+}
+.footerRecovered, .headerRecovered {
+    border-bottom: 7px solid orange;
+    color: orange ;
+    text-transform: uppercase;  
+}
+.footerDeaths, .headerDeaths {
+    border-bottom: 7px solid red;
+    color:red ;
+    text-transform: uppercase;  
+}
+
+.card{
+    background-color: #fff;
+    border: 1px solid black;
+    height:9rem;
+    width:15rem;
+    margin-top: 100px;
+    padding: 25px 0 25px 30px;
+}
+
+.icon {
+    width: 57px;
+    margin-right: 20px;
+}
+.tracker-block__content h4 {
+    color: #4D4D4D;
+    font-size: 18px;
+    font-weight: 400;
+}
+.tracker-block__content h2 {
+    color: #222222;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.tracker-block__content h2 .new-no {
+    color: #4D4D4D;
+    font-size: 18px;
+    font-weight: 400;
+    vertical-align: middle;
+}
