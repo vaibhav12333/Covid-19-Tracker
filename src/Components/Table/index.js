@@ -5,7 +5,10 @@ import CountUp from 'react-countup'
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    display:flex;
+    // border-radius: 10px !important;
+    // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    // padding:20px;
+
 `
 
 class TableState extends Component{
@@ -30,31 +33,30 @@ class TableState extends Component{
                 this.props.data.provinceState = this.props.country
             }
         return(
-            <>
-            {this.props.data?
-            <Table dark>
-                <thead className="text-left">
-                    <td>State</td>
-                    <td>Confirmed</td>
-                    <td>Active</td>
-                    <td>Recovered</td>
-                    <td>Deaths</td>
-                    
-                </thead>
-                <tbody>
-                     {this.state.data.map((data, key)=>{
-                         return <tr className="text-left">
-                             <td >{data.provinceState}</td>
-                             <td><CountUp start={0} end={data.confirmed} separator="," duration={1} /></td>
-                             <td><CountUp start={0} end={data.active} separator="," duration={1} /></td>
-                                <td><CountUp start={0} end={data.recovered} separator="," duration={1} /></td>
-                             <td><CountUp start={0} end={data.deaths} separator="," duration={1} /></td>
-                         </tr>
-                     })}
-                </tbody>
-               
-            </Table>:""}
-            </>
+            <Wrapper>
+           {!this.props.data.length < 2?
+            <Table striped >
+            <thead className="text-left">
+                <td>State</td>
+                <td>Confirmed</td>
+                <td>Recovered</td>
+                <td>Deaths</td>
+                
+            </thead>
+            <tbody>
+                 {this.props.data.map((data, key)=>{
+                     return <tr className="text-left">
+                         <td >{data.provinceState==null?this.props.country:data.provinceState}</td>
+                         <td><CountUp start={0} end={data.confirmed} separator="," duration={1} /></td>
+                         {/* <td><CountUp start={0} end={data.active} separator="," duration={1} /></td> */}
+                            <td><CountUp start={0} end={data.confirmed - data.deaths} separator="," duration={1} /></td>
+                         <td><CountUp start={0} end={data.deaths} separator="," duration={1} /></td>
+                     </tr>
+                 })}
+            </tbody>
+           
+        </Table>:""}
+            </Wrapper>
         )
 
     }

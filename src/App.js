@@ -9,7 +9,7 @@ import TableState from "./Components/Table/index"
 
 function App() {
   const [data,setdata] = useState({})
-  const [stateData,setstateData] = useState({})
+  const [stateData,setstateData] = useState([])
   const [country,setcountry] = useState(" ");
  useEffect(async () =>{
       const data = await fetchData();
@@ -30,8 +30,12 @@ function App() {
      <div className="body-case">
      <Cards data={data} />
      <CountryPicker handleCountryChange={handleCountryChange} />
-     <TableState country={country} data={stateData} />
+     <div className="row align-items-center justify-content-center">
+      <div className="col-8">
+      <TableState country={country} data={stateData} />
 
+      </div>
+     </div>
      </div>
 
     </div>

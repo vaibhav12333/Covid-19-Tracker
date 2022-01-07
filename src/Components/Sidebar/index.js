@@ -9,7 +9,7 @@ text-align:initial;
     top:20px;
     left:20px;
     bottom:30px;
-    width:300px;
+    width:70px;
     border-radius:10px;
     box-sizing: initial;
     border-left: 5px solid orange;
@@ -33,6 +33,7 @@ text-align:initial;
     }
 
 }
+
 .navigation ul li{
     border-top-left-radius:20px;
     border-bottom-left-radius:20px;
@@ -52,7 +53,7 @@ text-align:initial;
         color:#fff;
         .title{
             position:relative;
-            display:block;
+            display:none;
             padding-left:10px;
             height:60px;
             line-height:49px;
@@ -78,10 +79,35 @@ li:hover{
     background:rgb(255,249,242);
     a:hover{
         color:black;
+        .title:hover{
+            display:block;
+        }
 
     }
 }
-
+.toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    background:orange;
+    border-radius:10px;
+    cursor:pointer;
+    .active{
+            background
+        }
+    }
+    .navigation:hover{
+        width:300px;
+        transition: 0.3s ease-in-out;
+        .title{
+            display:block;
+        }
+    }
+    
+    
+    
 
 
 `
