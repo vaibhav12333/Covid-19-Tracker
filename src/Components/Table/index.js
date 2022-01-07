@@ -34,9 +34,9 @@ class TableState extends Component{
             }
         return(
             <Wrapper>
-           {!this.props.data.length < 2?
+          
             <Table striped >
-            <thead className="text-left">
+            <thead className={`text-left ${this.props.data.length < 2 ? "d-none":""}`}>
                 <td>State</td>
                 <td>Confirmed</td>
                 <td>Recovered</td>
@@ -55,7 +55,7 @@ class TableState extends Component{
                  })}
             </tbody>
            
-        </Table>:""}
+        </Table>
             </Wrapper>
         )
 

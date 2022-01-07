@@ -6,6 +6,7 @@ import { fetchData,fetchStateData } from './api/';
 import Cards from "./Components/Cards/Card"
 import CountryPicker from "./Components/CountryPicker/CountryPicker"
 import TableState from "./Components/Table/index"
+import Graphs from "./Components/Graphs/Graphs"
 
 function App() {
   const [data,setdata] = useState({})
@@ -16,14 +17,26 @@ function App() {
       setdata(data);
    },[])
    const handleCountryChange = async (country) => {
-    const data = await fetchData(country);
-    const stateData = await fetchStateData(country);
-    setstateData(stateData.data)
+    if(country === 'Global')
+    {
+      const data = await fetchData();
     setdata(data)
-    setcountry(country);
-    console.log(stateData);
+    setstateData([])
 
   }
+    else{
+      const data = await fetchData(country);
+      setdata(data)
+      const stateData = await fetchStateData(country);
+      setstateData(stateData.data)
+      setcountry(country);
+      console.log(stateData);
+    }
+
+    
+
+  }
+  console.log(data)
   return (
     <div className="App">
      <Sidebar />
@@ -35,6 +48,10 @@ function App() {
       <TableState country={country} data={stateData} />
 
       </div>
+      {/* <div className="col-5">
+        <Graphs data={data}  />
+      </div> */}
+     
      </div>
      </div>
 
