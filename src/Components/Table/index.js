@@ -1,7 +1,12 @@
 import React, { Component }from 'react'
-import {Table} from 'reactstrap'
-import {fetchStateData} from '../api'
+import {Table,} from 'reactstrap'
+import {fetchStateData} from '../../api/index'
 import CountUp from 'react-countup'
+import styled from "styled-components"
+
+const Wrapper = styled.div`
+    display:flex;
+`
 
 class TableState extends Component{
     constructor(props){
@@ -20,22 +25,24 @@ class TableState extends Component{
     render()
     
         {
-            console.log(this.state.data.data)
+            console.log(this.props.data)
             if(this.props.data.provinceState==null){
                 this.props.data.provinceState = this.props.country
             }
         return(
-            <Table striped>
-                <thead>
-                    <th>State</th>
-                    <th>Confirmed</th>
-                    <th>Active</th>
-                    <th>Recovered</th>
-                    <th>Deaths</th>
+            <>
+            {this.props.data?
+            <Table dark>
+                <thead className="text-left">
+                    <td>State</td>
+                    <td>Confirmed</td>
+                    <td>Active</td>
+                    <td>Recovered</td>
+                    <td>Deaths</td>
                     
                 </thead>
                 <tbody>
-                     {this.props.data.map((data, key)=>{
+                     {this.state.data.map((data, key)=>{
                          return <tr className="text-left">
                              <td >{data.provinceState}</td>
                              <td><CountUp start={0} end={data.confirmed} separator="," duration={1} /></td>
@@ -46,7 +53,8 @@ class TableState extends Component{
                      })}
                 </tbody>
                
-            </Table>
+            </Table>:""}
+            </>
         )
 
     }
