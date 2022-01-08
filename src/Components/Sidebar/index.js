@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom"
+
+
+
+
+const covid  = "assets/covid.png"
+
 const Wrapper = styled.div`
 text-align:initial;
  
 .navigation{
     position:fixed;
     top:20px;
+    display:flex;
+    flex-direction:column;
     left:20px;
     bottom:30px;
     width:70px;
@@ -16,13 +24,12 @@ text-align:initial;
     background:orange;
 
     ul{
-        position: absolute;
+        margin-top:auto;
         top:0;
         left:0;
         width: 100%;
         padding-left: 5px;
         padding-top:40px;
-
     }
 
 }
@@ -58,6 +65,7 @@ text-align:initial;
             height:60px;
             line-height:49px;
             white-space:normal;
+           
 
 
         }
@@ -112,9 +120,14 @@ li:hover{
 
 `
 const Sidebar = (props)=>{
+    const handleLogout = ()=>{
+        localStorage.clear();
+        window.location.reload();
+    }
     return(
         <Wrapper>
             <div className="navigation">
+           
                 <ul>
                     <li className={`list ${props.active==="Home"?"active":""}`}>
                        <Link to='/'>
@@ -156,14 +169,27 @@ const Sidebar = (props)=>{
                       <Link to='/auth'>
                       <a href="#">
                             <span className="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
+                            <ion-icon name="log-in-outline"></ion-icon>
                             </span>
                             <span className="title">Log in</span>
                         </a>   
                       </Link>
                     </li>
 
+
+                   
+
                 </ul>
+                <ul>
+                <li className={`list `}>
+                      <a href="#" onClick={handleLogout}>
+                            <span className="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span className="title">Log out</span>
+                        </a>   
+                    </li>
+                    </ul>
             </div>
         </Wrapper>
     )

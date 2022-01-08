@@ -2,10 +2,33 @@ import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import CardComponent from './Card/Card';
 import styles from './Cards.module.css';
+import {Spinner} from "reactstrap"
 
 const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
-    return 'Loading...';
+    return (
+      <>
+        <div className="container">
+          <div className="row align-items-center justify-content-center" style={{"height":"100px"}}>
+          <div className="col-4">
+            <Spinner color="primary">
+              Loading...
+            </Spinner>
+          </div>
+          <div className="col-4">
+            <Spinner color="Succcess">
+              Loading...
+            </Spinner>
+          </div>
+          <div className="col-4">
+            <Spinner color="danger">
+              Loading...
+            </Spinner>
+          </div>
+          </div>
+        </div>
+      </>
+    );
   }
 console.log(confirmed)
   return (

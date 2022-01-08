@@ -19,6 +19,7 @@ border-radius:10px;
 background:cream;
 }
 .covid-logo{
+    z-index:-1;
     width:400px;
     height:400px;
     position:absolute;
