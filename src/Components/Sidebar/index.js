@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-
+import {Link} from "react-router-dom"
 const Wrapper = styled.div`
 text-align:initial;
  
@@ -116,15 +116,17 @@ const Sidebar = (props)=>{
         <Wrapper>
             <div className="navigation">
                 <ul>
-                    <li className="list active">
-                        <a href="#">
+                    <li className={`list ${props.active==="Home"?"active":""}`}>
+                       <Link to='/'>
+                       <a href="#">
                             <span className="icon">
                             <ion-icon name="home-outline"></ion-icon>
                             </span>
                             <span className="title ">Home</span>
                         </a>   
+                       </Link>
                     </li>
-                    <li className="list">
+                    <li className={`list ${props.active==="Symptoms"?"active":""}`}>
                         <a href="#">
                             <span className="icon">
                             <ion-icon name="accessibility-outline"></ion-icon>
@@ -150,13 +152,15 @@ const Sidebar = (props)=>{
                             <span className="title">Book Appointment</span>
                         </a>   
                     </li>
-                    <li className="list">
-                        <a href="#">
+                    <li className={`list ${props.active==="Login"?"active":""}`}>
+                      <Link to='/auth'>
+                      <a href="#">
                             <span className="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                             </span>
-                            <span className="title">Log Out</span>
+                            <span className="title">Log in</span>
                         </a>   
+                      </Link>
                     </li>
 
                 </ul>
