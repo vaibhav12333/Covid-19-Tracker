@@ -65,18 +65,21 @@ export const fetchStateData = async(country)=>{
    }
 }
 
-// export const fetchDailyData = async () =>{
-//   try{
-//       const daily = await axios.get(`${url}/daily`)
-//       const dailyData = daily.data.map((data)=>({
-//           confirmed: data.confirmed.total,
-//           deaths: data.deaths.total,
-//           date: data.reportDate
 
-//       }))
-//       return dailyData
-//   }
-//   catch(err){
-//       console.log(`failed to fetch daily data due to ${err}`)
-//   }
-// }
+export const fetchNewData = async (country) =>{
+  try{
+      const daily = await axios.get(`https://api.covid19api.com/summary`)
+      // const dailyData = daily.data.map((data)=>({
+      //     confirmed: data.confirmed.total,
+      //     deaths: data.deaths.total,
+      //     date: data.reportDate
+
+      // }))
+      const dailyData = daily.data.Countries
+      .filter((coun)=>{return coun.Country === country})
+      return dailyData;
+  }
+  catch(err){
+      console.log(`failed to fetch daily data due to ${err}`)
+  }
+}

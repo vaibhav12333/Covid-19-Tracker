@@ -70,6 +70,7 @@ const GoogleAuth = () => {
           }); 
             localStorage.setItem('user', JSON.stringify(userObj))
             // history.push('/onboarding')
+            console.log(localStorage.getItem('user'))
           })
     }
     useEffect(() => {
@@ -79,7 +80,7 @@ const GoogleAuth = () => {
     return <Wrapper>
         {isSignedIn ? (
             <span>
-                <h2>Signed In!</h2>
+                {/* <h2>Signed In!</h2> */}
                 {/* <button onClick={() => firebase.auth().signOut()}>Sign out!</button> */}
                 <h2>Welcome {localStorage.getItem('user')  ? JSON.parse(localStorage.getItem('user')).name : ''}</h2>
                             {/* <Link className="btn btn-border-3" to='/onboarding'>Get Started</Link> */}

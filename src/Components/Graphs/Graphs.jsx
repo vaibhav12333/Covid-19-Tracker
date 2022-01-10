@@ -1,38 +1,20 @@
-import React,{useState,useEffect} from "react";
-import {Bar} from "react-chartjs-2"
-import { fetchData } from "../../api";
+// import React,{useState,useEffect} from "react";
+// import { Line } from 'react-chartjs-2';
 
-const BarGraph = ()=>{
-    const [data,setdata] = useState({})
-   
-     useEffect(() =>{
-        const data =  fetchData();
-        setdata(data);
-        console.log(data)
-     },[]) 
-     const data1={
-        labels: ['Confirmed','Recovered','Deaths'],
-        datasets:[
-            {
-                label:'No. of Cases',
-                data:[100,200,300],
-                backgroundColor:[
-                    'orange','blue','red'
-                ],
-            }
-        ]
-     }
-    // if (!data.confirmed.value) {
-    //     return 'Loading...';
-    //   }
-    return(
+// const CovidChart = (props)=>{
+//     return(
       
-        <>
-            <Bar 
-                data={data1}
-            />
-        </>
-    )
+//         <>
+//             <Line 
+//                 data={{
+//                     labels:['Confirmed,Recovered,Deaths'],
+//                     datasets:[
+                        
+//                     ]
+//                 }}
+//             />
+//         </>
+//     )
 
-}
-export default BarGraph;
+// }
+// export default CovidChart;

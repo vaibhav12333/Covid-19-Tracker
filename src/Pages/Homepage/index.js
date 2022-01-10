@@ -3,7 +3,7 @@ import Sidebar from "../../Components/Sidebar/index"
 import Cards from "../../Components/Cards/Card"
 import CountryPicker from "../../Components/CountryPicker/CountryPicker"
 import TableState from "../../Components/Table/index"
-import { fetchData,fetchStateData } from '../../api/index';
+import { fetchData,fetchStateData,fetchNewData } from '../../api/index';
 
 
 
@@ -35,13 +35,12 @@ const Home = (props)=>{
         const data = await fetchData(country);
         setdata(data)
         const stateData = await fetchStateData(country);
+        const newData = await fetchNewData(country);
+        console.log(newData);
         setstateData(stateData.data)
         setcountry(country);
         console.log(stateData);
       }
-  
-      
-  
     }
     console.log(data)
     return(

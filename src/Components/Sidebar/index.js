@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 
 
 
@@ -120,9 +120,11 @@ li:hover{
 
 `
 const Sidebar = (props)=>{
+    let navigate = useNavigate()
+
     const handleLogout = ()=>{
         localStorage.clear();
-        window.location.reload();
+        navigate(`/`)
     }
     return(
         <Wrapper>
@@ -157,15 +159,17 @@ const Sidebar = (props)=>{
                             <span className="title">Countries</span>
                         </a>   
                     </li>
-                    <li className="list">
+                    <li className={`list ${props.active==="Appointment"?"active":""} `}>
+                        <Link to={`${localStorage.getItem('user') ?'/Appointment':'/Login'}`}>
                         <a href="#">
                             <span className="icon">
                             <ion-icon name="shield-outline"></ion-icon>
                             </span>
                             <span className="title">Book Appointment</span>
                         </a>   
+                        </Link>
                     </li>
-                    <li className={`list ${props.active==="Login"?"active":""}`}>
+                    <li className={`list ${props.active==="Login"?"active":""} ${localStorage.getItem('user') ?'d-none':'d-block'}`}>
                       <Link to='/auth'>
                       <a href="#">
                             <span className="icon">
@@ -181,8 +185,8 @@ const Sidebar = (props)=>{
 
                 </ul>
                 <ul>
-                <li className={`list `}>
-                      <a href="#" onClick={handleLogout}>
+                <li className={`list ${localStorage.getItem('user') ?'d-block':'d-none'}`} onClick={handleLogout}>
+                      <a  >
                             <span className="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                             </span>
