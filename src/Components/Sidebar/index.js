@@ -160,7 +160,7 @@ const Sidebar = (props)=>{
                         </a>   
                     </li>
                     <li className={`list ${props.active==="Appointment"?"active":""} `}>
-                        <Link to={`${localStorage.getItem('user') ?'/Appointment':'/Login'}`}>
+                        <Link to={`${localStorage.getItem('user') ?'/Appointment':'/auth'}`}>
                         <a href="#">
                             <span className="icon">
                             <ion-icon name="shield-outline"></ion-icon>
