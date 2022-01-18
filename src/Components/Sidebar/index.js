@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
-import {Link,useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import DarkModeToggle from "react-dark-mode-toggle";
+import { darkModeOn, darkModeOff } from '../../Redux/Theme/Actions'
+import { useSelector, useDispatch } from "react-redux";
 
 
 
-
-const covid  = "assets/covid.png"
+const covid = "assets/covid.png"
 
 const Wrapper = styled.div`
 text-align:initial;
@@ -20,8 +22,8 @@ text-align:initial;
     width:70px;
     border-radius:10px;
     box-sizing: initial;
-    border-left: 5px solid orange;
-    background:orange;
+    border-left:${props => props.isDark ? "5px solid black" : "5px solid orange"} ;
+    background:${props => props.isDark ? "black" : "orange"};
 
     ul{
         margin-top:auto;
@@ -119,81 +121,108 @@ li:hover{
 
 
 `
-const Sidebar = (props)=>{
+const Sidebar = (props) => {
     let navigate = useNavigate()
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         localStorage.clear();
         navigate(`/`)
     }
-    return(
-        <Wrapper>
+    const dispatch = useDispatch();
+    const darkMode = useSelector((state) => state.theme);
+    const [checked, setChecked] = useState(false)
+    const toggleChange = () => {
+        if (checked) {
+            dispatch(darkModeOff())
+            document.querySelector('body').style.background = "rgb(255,249,242)"
+        }
+        else {
+            dispatch(darkModeOn())
+            document.querySelector('body').style.background = "#111111"
+        }
+        setChecked(!checked)
+    }
+
+    return (
+        <Wrapper isDark={darkMode}>
             <div className="navigation">
-           
+
                 <ul>
-                    <li className={`list ${props.active==="Home"?"active":""}`}>
-                       <Link to='/'>
-                       <a href="#">
-                            <span className="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                            </span>
-                            <span className="title ">Home</span>
-                        </a>   
-                       </Link>
+                    <li className={`list ${props.active === "Home" ? "active" : ""}`}>
+                        <Link to='/'>
+                            <a href="#">
+                                <span className="icon">
+                                    <ion-icon name="home-outline"></ion-icon>
+                                </span>
+                                <span className="title ">Home</span>
+                            </a>
+                        </Link>
                     </li>
-                    <li className={`list ${props.active==="Symptoms"?"active":""}`}>
+                    <li className={`list ${props.active === "Symptoms" ? "active" : ""}`}>
                         <a href="#">
                             <span className="icon">
-                            <ion-icon name="accessibility-outline"></ion-icon>
+                                <ion-icon name="accessibility-outline"></ion-icon>
                             </span>
                             <span className="title">Symptoms</span>
-                        </a>   
+                        </a>
                     </li>
+
                     <li className="list">
                         <a href="#">
                             <span className="icon">
-                            <ion-icon name="globe-outline">
-                                
-                            </ion-icon>
+                                <ion-icon name="globe-outline">
+
+                                </ion-icon>
                             </span>
                             <span className="title">Countries</span>
-                        </a>   
+                        </a>
                     </li>
-                    <li className={`list ${props.active==="Appointment"?"active":""} `}>
-                        <Link to={`${localStorage.getItem('user') ?'/Appointment':'/auth'}`}>
-                        <a href="#">
-                            <span className="icon">
-                            <ion-icon name="shield-outline"></ion-icon>
-                            </span>
-                            <span className="title">Book Appointment</span>
-                        </a>   
+                    <li className={`list ${props.active === "Appointment" ? "active" : ""} `}>
+                        <Link to={`${localStorage.getItem('user') ? '/Appointment' : '/auth'}`}>
+                            <a href="#">
+                                <span className="icon">
+                                    <ion-icon name="shield-outline"></ion-icon>
+                                </span>
+                                <span className="title">Book Appointment</span>
+                            </a>
                         </Link>
                     </li>
-                    <li className={`list ${props.active==="Login"?"active":""} ${localStorage.getItem('user') ?'d-none':'d-block'}`}>
-                      <Link to='/auth'>
+                    <li className={`list `}>
                       <a href="#">
-                            <span className="icon">
-                            <ion-icon name="log-in-outline"></ion-icon>
-                            </span>
-                            <span className="title">Log in</span>
-                        </a>   
-                      </Link>
+                      <span className="icon">
+                            {darkMode?<ion-icon name="moon-outline"></ion-icon>:<ion-icon name="sunny-outline"></ion-icon>}
+                        </span>
+                        <span className="title">
+                            <DarkModeToggle onChange={() => toggleChange()} checked={checked} size={60} />
+                        </span>
+                      </a>
+
+                    </li>
+                    <li className={`list ${props.active === "Login" ? "active" : ""} ${localStorage.getItem('user') ? 'd-none' : 'd-block'}`}>
+                        <Link to='/auth'>
+                            <a href="#">
+                                <span className="icon">
+                                    <ion-icon name="log-in-outline"></ion-icon>
+                                </span>
+                                <span className="title">Log in</span>
+                            </a>
+                        </Link>
                     </li>
 
 
-                   
+
 
                 </ul>
                 <ul>
-                <li className={`list ${localStorage.getItem('user') ?'d-block':'d-none'}`} onClick={handleLogout}>
-                      <a  >
+                    <li className={`list ${localStorage.getItem('user') ? 'd-block' : 'd-none'}`} onClick={handleLogout}>
+                        <a  >
                             <span className="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
+                                <ion-icon name="log-out-outline"></ion-icon>
                             </span>
                             <span className="title">Log out</span>
-                        </a>   
+                        </a>
                     </li>
-                    </ul>
+                </ul>
             </div>
         </Wrapper>
     )

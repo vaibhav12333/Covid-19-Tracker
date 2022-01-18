@@ -1,7 +1,8 @@
-import React, { Component }from 'react'
+import React, { useEffect,useState }from 'react'
 import {Table,} from 'reactstrap'
 import {fetchStateData} from '../../api/index'
 import CountUp from 'react-countup'
+import {useSelector} from "react-redux";
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -10,33 +11,28 @@ const Wrapper = styled.div`
     // padding:20px;
 
 `
-
-class TableState extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-            
-            data:[]
-                
-        }
-    }
-    async componentDidMount(){
-        const data = await fetchStateData(this.props.country);
-        console.log(data)
-        this.setState({data:data.data})
-    }
-    render()
+const TableState =(props)=>{
+ const [data,setdata] = useState([]);
+     useEffect(async()=>{
+        
+            const data = await fetchStateData(props.country);
+            console.log(data)
+            setdata({data:data.data})
+        
+     },[])
     
-        {
-            console.log(this.props.data)
-            if(this.props.data.provinceState==null){
-                this.props.data.provinceState = this.props.country
+    
+        
+            const darkMode = useSelector((state)=>state.theme)
+
+            if(props.data.provinceState==null){
+                props.data.provinceState = props.country
             }
         return(
-            <Wrapper>
+            <Wrapper >
           
-            <Table striped >
-            <thead className={`text-left ${this.props.data.length < 2 ? "d-none":""}`}>
+            <Table dark={darkMode} striped={!darkMode} >
+            <thead className={`text-left ${props.data.length < 2 ? "d-none":""}`}>
                 <td>State</td>
                 <td>Confirmed</td>
                 <td>Recovered</td>
@@ -44,9 +40,9 @@ class TableState extends Component{
                 
             </thead>
             <tbody>
-                 {this.props.data.map((data, key)=>{
+                 {props.data.map((data, key)=>{
                      return <tr className="text-left">
-                         <td >{data.provinceState==null?this.props.country:data.provinceState}</td>
+                         <td >{data.provinceState==null?props.country:data.provinceState}</td>
                          <td><CountUp start={0} end={data.confirmed} separator="," duration={1} /></td>
                          {/* <td><CountUp start={0} end={data.active} separator="," duration={1} /></td> */}
                             <td><CountUp start={0} end={data.confirmed - data.deaths} separator="," duration={1} /></td>
@@ -60,5 +56,5 @@ class TableState extends Component{
         )
 
     }
-}
+
 export default TableState

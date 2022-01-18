@@ -1,4 +1,4 @@
-import react,{useState,useEffect} from "react";
+import React,{useState,useEffect,Fragment} from "react";
 import Sidebar from "../../Components/Sidebar/index"
 import Cards from "../../Components/Cards/Card"
 import CountryPicker from "../../Components/CountryPicker/CountryPicker"
@@ -44,7 +44,7 @@ const Home = (props)=>{
     }
     console.log(data)
     return(
-    <>
+    <Fragment isdark={true}>
          <Sidebar active="Home"/>
      <div className="body-case">
      {/* <Login /> */}
@@ -59,7 +59,8 @@ const Home = (props)=>{
       </div>
      
      </div>
-     </div></>
+     </div>
+     </Fragment>
 )
 }
 
