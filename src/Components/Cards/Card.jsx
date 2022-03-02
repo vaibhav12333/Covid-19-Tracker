@@ -36,6 +36,10 @@ const CardWrapper = styled.div`
     background:${props=>props.isDark?"black":"white"};
     color:${props=>props.isDark?"white":"black"};
   }
+  .MuiTypography-colorTextSecondary{
+    color:${props=>props.isDark?"white":"black"};
+
+  }
 `
 const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   const darkMode = useSelector((state) => state.theme);  
