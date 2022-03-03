@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import DarkModeToggle from "react-dark-mode-toggle";
 import { darkModeOn, darkModeOff } from '../../Redux/Theme/Actions'
 import { useSelector, useDispatch } from "react-redux";
+const vaccineSvg = "assets/vaccine.svg"
 
 
 
@@ -158,14 +159,22 @@ const Sidebar = (props) => {
                             </a>
                         </Link>
                     </li>
-                    <li className={`list ${props.active === "Symptoms" ? "active" : ""}`}>
+                    <li className={`list ${props.active === " " ? "active" : ""}`}>
+                            <a href="https://www.cowin.gov.in/">
+                                <span className="icon">
+                                <ion-icon name="accessibility-outline"></ion-icon>
+                                </span>
+                                <span className="title ">Vaccine</span>
+                            </a>
+                    </li>
+                    {/* <li className={`list ${props.active === "Symptoms" ? "active" : ""}`}>
                         <a href="#">
                             <span className="icon">
                                 <ion-icon name="accessibility-outline"></ion-icon>
                             </span>
                             <span className="title">Symptoms</span>
                         </a>
-                    </li>
+                    </li> */}
 
                     <li className="list">
                         <a href="#">
