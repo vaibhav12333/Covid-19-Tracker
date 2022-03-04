@@ -16,7 +16,7 @@ const Home = (props)=>{
     const [data,setdata] = useState({})
     const [stateData,setstateData] = useState([])
     const [country,setcountry] = useState(" ");
-    const [dailyData,setdailyData] = useState({});
+    const [dailyData,setdailyData] = useState([]);
     useEffect( () =>{
        const myApi = async()=>{
         const data = await fetchData();
@@ -57,7 +57,7 @@ const Home = (props)=>{
      <CountryPicker handleCountryChange={handleCountryChange} />
      <div className="container">
      <div className="row ">
-      <div className="col-6">
+      <div className="col-7">
         <TableState country={country} data={stateData} />
       </div>
       <div className="col-5">
