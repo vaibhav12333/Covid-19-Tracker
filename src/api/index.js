@@ -34,7 +34,7 @@ export const fetchDailyData = async (country) => {
   let changeableUrl = 'https://api.covid19api.com/total/dayone/country/india/status/confirmed';
 
   if (country) {
-    changeableUrl = `https://api.covid19api.com/total/dayone/country/${country}/status/confirmed`;
+    changeableUrl = `https://api.covid19api.com/total/dayone/country/${country}/status/deaths`;
   }
   try {
       const { data } = await axios.get(changeableUrl);

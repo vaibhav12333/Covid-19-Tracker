@@ -176,16 +176,6 @@ const Sidebar = (props) => {
                         </a>
                     </li> */}
 
-                    <li className="list">
-                        <a href="#">
-                            <span className="icon">
-                                <ion-icon name="globe-outline">
-
-                                </ion-icon>
-                            </span>
-                            <span className="title">Countries</span>
-                        </a>
-                    </li>
                     <li className={`list ${props.active === "Appointment" ? "active" : ""} `}>
                         <Link to={`${localStorage.getItem('user') ? '/Appointment' : '/auth'}`}>
                             <a href="#">
@@ -228,7 +218,7 @@ const Sidebar = (props) => {
                             <span className="icon">
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </span>
-                            <span className="title">Log out</span>
+                            <span className="title" style={{"cursor":"pointer"}}>Log out</span>
                         </a>
                     </li>
                 </ul>

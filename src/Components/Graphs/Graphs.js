@@ -33,12 +33,12 @@ const CovidChart = ({ data: { confirmed, recovered, deaths, lastUpdate },dailyDa
         }),
         datasets:[
             {
-            label:'Cases',
+            label:'Deaths',
             data: dailyData.map((date)=>{
                 return date.Cases
             }),
             fill:false,
-            borderColor: 'blue',
+            borderColor: 'red',
             borderWidth:0.2,
             tension: 0.1
 

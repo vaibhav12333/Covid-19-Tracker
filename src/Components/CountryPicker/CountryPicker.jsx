@@ -29,7 +29,7 @@ const TableWrapper = styled.div`
 }
 `
 
-const Countries = ({ handleCountryChange }) => {
+const Countries = ({ handleCountryChange,country }) => {
   const [countries, setCountries] = useState([]);
   const darkMode = useSelector((state) => state.theme)
 

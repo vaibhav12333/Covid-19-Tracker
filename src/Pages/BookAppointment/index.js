@@ -1,6 +1,8 @@
-import react,{useState} from 'react';
+import react,{useState,useEffect} from 'react';
 import Sidebar from "../../Components/Sidebar"
 import styled from "styled-components"
+import PayPal from "../../Components/paypal"
+import {Navigate} from "react-router-dom"
 const social = '/assets/Research.svg'
 const covid  = "assets/covid.png"
 
@@ -30,6 +32,16 @@ background:cream;
  animation-iteration-count: infinite;
 }
 }
+.Payment-btn {
+    padding: 10px 25px ;
+    margin: 4px;
+    border-radius: 25px;
+    background-color:orange;
+    color:#fff;
+    border:white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    } 
+    
 
 @keyframes logo{
     0%{
@@ -56,16 +68,37 @@ background:cream;
    }
 `
 const Appointment = ()=>{
+    useEffect(() =>{<Navigate to='/' />},[])
+const [checkout, setCheckOut] = useState(false); //changes by sakshi
+
     return(
         <AuthStyle>
 
 
             <Sidebar active="Appointment" />
             <div className="mx-auto">
-          
-            <div className=" d-flex align-items-center   justify-content-center">
-            
-                        <iframe src="https://meetings.hubspot.com/vaibhav-garg?embed=true" width="720" height="720" />
+            <div className="my-5">
+                <h3 >Please Proceed To Payment After Booking Timeslot To Confirm Meeting</h3>
+                        <div className="PaymentOpt">
+                        {checkout ? (
+                            <PayPal />
+                        ) : (
+                            <button className="Payment-btn"
+                            onClick={() => {
+                                setCheckOut(true);
+                            }}
+                            >
+                            PAYMENT
+                            </button>
+                        )}
+                        </div>
+                        </div>
+            <div className=" d-flex align-items-center    justify-content-center">
+                       
+                            <div>
+                            <iframe src="https://meetings.hubspot.com/vaibhav-garg?embed=true" width="700" height="650" />
+
+                            </div>
                     </div>
                     </div>
                 {/* <div className="row">

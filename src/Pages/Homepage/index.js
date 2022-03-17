@@ -4,6 +4,7 @@ import Cards from "../../Components/Cards/Card"
 import CountryPicker from "../../Components/CountryPicker/CountryPicker"
 import TableState from "../../Components/Table/index"
 import CoviChart from "../../Components/Graphs/Graphs";
+import Speech from "../../Components/speech"
 import { fetchData,fetchStateData,fetchNewData,fetchDailyData } from '../../api/index';
 
 
@@ -13,8 +14,9 @@ const covid  = "assets/covid.png"
 
 
 const Home = (props)=>{
-    const [data,setdata] = useState({})
-    const [stateData,setstateData] = useState([])
+  const [data,setdata] = useState({})
+  const [word,setword] = useState()
+  const [stateData,setstateData] = useState([])
     const [country,setcountry] = useState(" ");
     const [dailyData,setdailyData] = useState([]);
     useEffect( () =>{
@@ -53,8 +55,8 @@ const Home = (props)=>{
          <Sidebar active="Home"/>
      <div className="body-case">
      {/* <Login /> */}
-     <Cards data={data} />
-     <CountryPicker handleCountryChange={handleCountryChange} />
+     <Cards data={data} country={country}/>
+     <CountryPicker handleCountryChange={handleCountryChange} country={country}/>
      <div className="container">
      <div className="row ">
       <div className="col-7">
@@ -63,6 +65,7 @@ const Home = (props)=>{
       <div className="col-5">
         <CoviChart data={data} dailyData={dailyData} />
       </div>
+      {/* <Speech setword={setword} handleCountryChange={handleCountryChange} /> */}
      
      </div>
      </div>
