@@ -96,7 +96,7 @@ const [checkout, setCheckOut] = useState(false); //changes by sakshi
             <div className=" d-flex align-items-center    justify-content-center">
                        
                             <div>
-                            <iframe src="https://meetings.hubspot.com/vaibhav-garg?embed=true" width="700" height="650" />
+                            <iframe src="https://meetings.hubspot.com/badal-tyagi" width="700" height="650" />
 
                             </div>
                     </div>
